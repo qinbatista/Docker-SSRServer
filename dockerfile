@@ -1,4 +1,4 @@
-FROM debian:10
+FROM debian:10-slim
 ADD * ./
 
 RUN apt-get update
