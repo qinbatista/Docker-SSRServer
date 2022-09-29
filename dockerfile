@@ -2,7 +2,7 @@ FROM debian
 ADD * ./
 
 RUN apt-get update
-RUN apt-get -y install
+RUN apt-get -y install python3 python3-distutils
 RUN chmod 777 ssr-install.sh
 RUN bash ssr-install.sh
 RUN cp ssr.json /etc/ssr.json

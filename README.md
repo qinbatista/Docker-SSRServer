@@ -1,16 +1,16 @@
-##Build Command
+## Build Command
 
 ```
 docker build -t qinbatista/ssr .
 ```
 
-##Run Command
+## Run Command
 ```
 docker run -itd -p 7000-7030:7000-7030  qinbatista/ssr
 ```
-##ssr.json
+## ssr.json
 ```
-modify password and port
+modify password and port in this file
 ```
 
 
