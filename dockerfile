@@ -1,8 +1,8 @@
-FROM debian
+FROM debian:10
 ADD * ./
 
 RUN apt-get update
-RUN apt-get -y install python3.7 python3.7-distutils make gcc
+RUN apt-get -y install python3 python3-distutils make gcc
 
 RUN chmod 777 ssr-install.sh
 RUN bash ssr-install.sh
