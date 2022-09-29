@@ -7,8 +7,7 @@ RUN apt-get -y install make gcc
 
 RUN curl -O https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tar.xz
 RUN tar -xf Python-3.7.3.tar.xz
-RUN cd Python-3.7.3
-RUN ./configure --enable-optimizations
+RUN ./Python-3.7.3/configure --enable-optimizations
 RUN make -j 8
 RUN make altinstall
 
