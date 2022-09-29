@@ -4,7 +4,7 @@ ADD * ./
 
 
 RUN apt-get update
-RUN apt-get -y install python3 python3-distutils
+RUN apt-get -y install python3 python3-distutils make gcc
 
 COPY libsodium-1.0.10.tar.gz ./libsodium-1.0.10.tar.gz
 RUN tar xzvf ./libsodium-1.0.10.tar.gz
