@@ -1,12 +1,12 @@
 ## Build Command
 
 ```
-docker build -t qinbatista/ssr .
+docker build -t qinbatista/ssrserver .
 ```
 
 ## Run Command
 ```
-docker run -itd -p 7000-7030:7000-7030  qinbatista/ssr
+docker run -itd -p 7000-7030:7000-7030  qinbatista/ssrserver --restart=always
 ```
 ## ssr.json
 ```
