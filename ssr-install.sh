@@ -16,8 +16,8 @@ echo
 
 libsodium_file="libsodium-1.0.17"
 libsodium_url="https://github.com/jedisct1/libsodium/releases/download/1.0.17/libsodium-1.0.17.tar.gz"
-shadowsocks_r_file="shadowsocksr-3.2.0"
-shadowsocks_r_url="https://github.com/ShadowsocksR-Live/shadowsocksr/archive/3.2.0.tar.gz"
+shadowsocks_r_file="shadowsocks"
+shadowsocks_r_url="https://qincdn.s3.us-west-2.amazonaws.com/Download/shadowsocks3.2.0-linux-server.zip"
 
 #Current folder
 cur_dir=`pwd`
@@ -318,18 +318,18 @@ download_files(){
         exit 1
     fi
     # Download ShadowsocksR file
-    if ! wget --no-check-certificate -O ${shadowsocks_r_file}.tar.gz ${shadowsocks_r_url}; then
+    if ! wget --no-check-certificate -O ${shadowsocks_r_file}.zip ${shadowsocks_r_url}; then
         echo -e "[${red}Error${plain}] Failed to download ShadowsocksR file!"
         exit 1
     fi
     # Download ShadowsocksR init script
     if check_sys packageManager yum; then
-        if ! wget --no-check-certificate https://raw.githubusercontent.com/ShadowsocksR-Live/shadowsocksr/manyuser/ssr-svc-yum -O /etc/init.d/ssr; then
+        if ! wget --no-check-certificate https://qincdn.s3.us-west-2.amazonaws.com/Download/ssr-svc-yum -O /etc/init.d/ssr; then
             echo -e "[${red}Error${plain}] Failed to download ShadowsocksR chkconfig file!"
             exit 1
         fi
     elif check_sys packageManager apt; then
-        if ! wget --no-check-certificate https://raw.githubusercontent.com/ShadowsocksR-Live/shadowsocksr/manyuser/ssr-svc-apt -O /etc/init.d/ssr; then
+        if ! wget --no-check-certificate https://qincdn.s3.us-west-2.amazonaws.com/Download/ssr-svc-apt -O /etc/init.d/ssr; then
             echo -e "[${red}Error${plain}] Failed to download ShadowsocksR chkconfig file!"
             exit 1
         fi
@@ -410,9 +410,11 @@ install(){
     ldconfig
     # Install ShadowsocksR
     cd ${cur_dir}
-    tar zxf ${shadowsocks_r_file}.tar.gz
+    ls
+    unzip ${shadowsocks_r_file}.zip
+    ls
     mkdir /usr/local/ssr
-    mv ${shadowsocks_r_file}/shadowsocks /usr/local/ssr/
+    mv ${shadowsocks_r_file} /usr/local/ssr/
     if [ -f /usr/local/ssr/shadowsocks/server.py ]; then
         chmod +x /etc/init.d/ssr
         if check_sys packageManager yum; then
@@ -445,7 +447,7 @@ install(){
 # Install cleanup
 install_cleanup(){
     cd ${cur_dir}
-    rm -rf ${shadowsocks_r_file}.tar.gz ${shadowsocks_r_file} ${libsodium_file}.tar.gz ${libsodium_file}
+    rm -rf ${shadowsocks_r_file}.zip ${shadowsocks_r_file} ${libsodium_file}.tar.gz ${libsodium_file}
 }
 
 
